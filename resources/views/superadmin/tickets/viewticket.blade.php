@@ -23,12 +23,6 @@
                       <p class="mb-0"><strong>{{ $ticket[0]->student_name }}</strong></p>
                     </td>
                   </tr>
-                  <tr>
-                    <td><small class="text-light fw-semibold">Student Email</small></td>
-                    <td class="py-3">
-                      <p class="mb-0"><strong>{{ $ticket[0]->student_email }}</strong></p>
-                    </td>
-                  </tr>
 
                   <tr>
                     <td><small class="text-light fw-semibold">Query Type</small></td>
@@ -87,7 +81,6 @@
                     <label class="form-label" for="selectType">Add comment</label>
                     <input type="text" class="form-control" name="comment" required>
                     <input type="hidden" name="issue_id" value="{{ $ticket[0]->issue_id }}">
-                    <input type="hidden" name="program_manager_id" value="{{ $ticket[0]->program_manager_id }}">
                 </div><br>
                 <button type="submit" class="btn btn-primary">Add</button>
               </form>

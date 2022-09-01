@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laravel_comment;
 use App\Models\Laravel_ticket;
 
 use Illuminate\Http\Request;
@@ -29,6 +30,13 @@ class TicketController extends Controller
 
     public function singleticket($issueid){
         $result['ticket'] = Laravel_ticket::where(['issue_id'=>$issueid,'program_manager_id'=>Session::get('PROGRAM_MANAGER_ID')])->get();
-        return view('admin.tickets.viewticket');
+        $result['comments'] = Laravel_comment::where(['issue_id'=>$issueid])->get();
+        return view('admin.tickets.viewticket',$result);
+    }
+
+    public function status(Request $request){
+        Laravel_ticket::where('issue_id',$request->issue_id)->update(['status'=>$request->post('status')]);
+
+        return redirect()->back();
     }
 }

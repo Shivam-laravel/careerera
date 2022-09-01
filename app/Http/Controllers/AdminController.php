@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laravel_ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -36,6 +38,11 @@ class AdminController extends Controller
             }
 
             public function dashboard(){
-                return view('admin.dashboard');
+                $result['tickets'] = Laravel_ticket::where(['program_manager_id'=>Session::get('PROGRAM_MANAGER_ID')])->get();
+                $result['ticket'] = collect($result['tickets'])->countBy('status');
+                // echo "<pre>";
+                // print_r($result);
+                // exit;
+                return view('admin.dashboard',$result);
             }
 }

@@ -18,7 +18,7 @@ class QueryController extends Controller
         ->first();
         $result['studentname'] = DB::table('user')
         ->where('user_registration_id','=',$result['user_id'])
-        ->select('user_name')
+        ->select('user_name','user_email')
         ->first();
         $result['query'] = DB::table('laravel_querytypes')
         ->select('query_type')

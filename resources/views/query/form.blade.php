@@ -33,6 +33,7 @@
                     <input type="hidden" name="batch_id" value="{{ $batch_id }}"   />
                     <input type="hidden"  name="student_id" value="{{ $user_id }}" />
                     <input type="hidden" name="student_name" value="{{ $studentname->user_name }}" />
+                    <input type="hidden" name="student_email" value="{{ $studentname->user_email }}" />
                     <input type="hidden" value="{{ $programmanagerid->ProgramManager }}" name="program_manager_id" />
                     <select name="query_type" required id="">
                         <option value="">Select Query Type</option>
