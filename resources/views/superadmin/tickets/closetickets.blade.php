@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('superadmin.layouts.app')
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
@@ -44,7 +44,7 @@
           <tbody class="table-border-bottom-0">
             @foreach ($queries as $in)
             <tr>
-                <td><a class="btn btn-danger" href="{{ url('home/tickets') }}/{{ $in->issue_id }}">{{ $in->issue_id }}</a></td>
+                <td><a class="btn btn-danger" href="{{ url('superadmin/tickets') }}/{{ $in->issue_id }}">{{ $in->issue_id }}</a></td>
                 <td>{{ $in->student_name }}</td>
                 <td>{{ $in->batch_id }}</td>
                 <td>{{ $in->query_type }}</td>

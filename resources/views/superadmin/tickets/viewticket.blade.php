@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('superadmin.layouts.app')
 
 @section('container')
 <div class="container-xxl flex-grow-1 container-p-y">

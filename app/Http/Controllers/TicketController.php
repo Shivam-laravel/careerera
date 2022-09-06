@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Laravel_comment;
 use App\Models\Laravel_ticket;
-
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
@@ -18,6 +19,15 @@ class TicketController extends Controller
     public function opentickets()
     {
         $result['queries'] = Laravel_ticket::where(['program_manager_id'=>Session::get('PROGRAM_MANAGER_ID'),'status'=>'Open'])->get();
+       return view('admin.tickets.opentickets',$result);
+    }
+
+    public function openticketshours()
+    {
+        $result['queries'] = DB::table('laravel_tickets')->where('created_at', '>', Carbon::now()->subHours(8)->toDateTimeString())
+        ->where('program_manager_id','=',Session::get('PROGRAM_MANAGER_ID'))
+        ->get();
+
        return view('admin.tickets.opentickets',$result);
     }
 

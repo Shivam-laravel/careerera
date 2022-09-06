@@ -55,7 +55,7 @@
 
 
 
-            <form action="{{ route('logout') }}" method="post">
+            <form action="{{ route('signout') }}" method="post">
                 @csrf
               <div class="dropdown-divider"></div>
               <button type="submit" class="dropdown-item">

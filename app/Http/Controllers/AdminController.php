@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Laravel_ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -40,9 +42,12 @@ class AdminController extends Controller
             public function dashboard(){
                 $result['tickets'] = Laravel_ticket::where(['program_manager_id'=>Session::get('PROGRAM_MANAGER_ID')])->get();
                 $result['ticket'] = collect($result['tickets'])->countBy('status');
-                // echo "<pre>";
-                // print_r($result);
-                // exit;
+
+                $result['hours'] =
+                DB::table('laravel_tickets')->where('created_at', '>', Carbon::now()->subHours(8)->toDateTimeString())
+                ->where('program_manager_id','=',Session::get('PROGRAM_MANAGER_ID'))
+                ->get();
+
                 return view('admin.dashboard',$result);
             }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laravel_comment;
 use App\Models\Laravel_ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SuperadminController extends Controller
 {
@@ -36,9 +39,37 @@ class SuperadminController extends Controller
             public function dashboard(){
                 $result['tickets'] = Laravel_ticket::all();
                 $result['ticket'] = collect($result['tickets'])->countBy('status');
+                $result['hours'] =
+                DB::table('laravel_tickets')->where('created_at', '>', Carbon::now()->subHours(8)->toDateTimeString())
+                ->get();
                 // echo "<pre>";
                 // print_r($result);
                 // exit;
                 return view('superadmin.dashboard',$result);
             }
+
+            public function opentickets()
+    {
+        $result['queries'] = Laravel_ticket::where(['status'=>'Open'])->get();
+       return view('superadmin.tickets.opentickets',$result);
+    }
+
+    public function closetickets()
+    {
+        $result['queries'] = Laravel_ticket::where(['status'=>'Closed'])->get();
+       return view('superadmin.tickets.closetickets',$result);
+
+    }
+
+    public function singleticket($issueid){
+        $result['ticket'] = Laravel_ticket::where(['issue_id'=>$issueid])->get();
+        $result['comments'] = Laravel_comment::where(['issue_id'=>$issueid])->get();
+        return view('superadmin.tickets.viewticket',$result);
+    }
+
+    public function status(Request $request){
+        Laravel_ticket::where('issue_id',$request->issue_id)->update(['status'=>$request->post('status')]);
+
+        return redirect()->back();
+    }
 }

@@ -38,6 +38,8 @@ class QueryController extends Controller
         $model->batch_id =  $request->post('batch_id');
         $model->program_manager_id =  $request->post('program_manager_id');
         $model->student_id =  $request->post('student_id');
+        $model->student_email =  $request->post('student_email');
+
         $model->query_type =  $request->post('query_type');
         $model->description = $request->post('description');
         $model->status = 'Open';

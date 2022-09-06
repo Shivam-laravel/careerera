@@ -24,20 +24,20 @@
       <!-- Dashboards -->
 
       <li class="menu-item">
-        <a href="{{url('home/dashboard')}}" class="menu-link">
+        <a href="{{url('superadmin/dashboard')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-calendar"></i>
           <div data-i18n="Dashboard">Dashboard</div>
         </a>
       </li>
 
       <li class="menu-item">
-        <a href="{{url('home/open-tickets')}}" class="menu-link">
+        <a href="{{url('superadmin/open-tickets')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-calendar"></i>
           <div data-i18n="Open Tickets">Open Tickets</div>
         </a>
       </li>
       <li class="menu-item">
-        <a href="{{url('home/close-tickets')}}" class="menu-link">
+        <a href="{{url('superadmin/close-tickets')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-calendar"></i>
           <div data-i18n="Closed Tickets">Closed Tickets</div>
         </a>
